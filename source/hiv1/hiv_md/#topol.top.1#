@@ -1,0 +1,47 @@
+;
+;	File 'topol.top' was generated
+;	By user: unknown (25839)
+;	On host: m13h-2-1
+;	At date: Tue Aug 19 11:14:05 2025
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2024.3 (-:
+;	
+;	Executable:   /apps/spack/root/opt/spack/linux-rhel9-haswell/gcc-13.2.0/gromacs-2024.3-qklo76tbjjhhv44jac5r3z7x56xl3jts/bin/gmx
+;	Data prefix:  /apps/spack/root/opt/spack/linux-rhel9-haswell/gcc-13.2.0/gromacs-2024.3-qklo76tbjjhhv44jac5r3z7x56xl3jts
+;	Working dir:  /nobackup/autodelete/grp/fslg_dellacortelab/rmsf_at_home/hiv1_protease/md/run_1
+;	Command line:
+;	  gmx pdb2gmx -f protein.pdb -o protein.gro -p topol.top -ignh
+;	Force field was read from the standard GROMACS share directory.
+;
+
+; Include forcefield parameters
+#include "amber03.ff/forcefield.itp"
+
+; Include chain topologies
+#include "topol_Protein_chain_A.itp"
+#include "topol_Protein_chain_B.itp"
+
+; Include water topology
+#include "amber03.ff/tip3p.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "amber03.ff/ions.itp"
+
+[ system ]
+; Name
+HIV-1 PROTEASE
+
+[ molecules ]
+; Compound        #mols
+Protein_chain_A     1
+Protein_chain_B     1

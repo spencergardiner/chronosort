@@ -1,0 +1,13 @@
+# ChimeraX dual porcupine plot: AF3 vs MD
+# AF3 (red) vs MD (blue)
+
+open 1ex9.pdb
+cartoon
+color white
+hide atoms
+graphics silhouettes on
+preset 'Publication 1 (silhouettes)'
+
+open lipa_af3_vs_md_cones.bild
+view
+# Legend: red=AF3, blue=MD

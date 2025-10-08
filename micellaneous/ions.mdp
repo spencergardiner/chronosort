@@ -1,0 +1,3 @@
+integrator = md
+nsteps     = 1
+dt         = 0.002

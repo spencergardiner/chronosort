@@ -18,7 +18,7 @@ To begin using ChronoSort, review the [usage guide](./scripts/README.md). Exampl
 
 ## Support
 
-For questions, bug reports, or feature requests, please open an issue on GitHub.
+For questions, bug reports, or feature requests, please open an issue on GitHub. MD files are available upon request from the authors.
 
 ---
 

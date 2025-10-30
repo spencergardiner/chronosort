@@ -9,6 +9,15 @@ This project builds a trajectory from a set of `.cif` protein structures, comput
 - PCA projection with customizable components and scale
 - Outputs eigenvectors, projected trajectory, and eigenvalue plot
 
+## Getting Started
+
+First, clone the repository and navigate into it: 
+
+```bash
+git clone https://github.com/dellacortelab/chronosort.git
+cd chronosort
+```
+
 ## Requirements
 
 - Python 3.8+
@@ -17,15 +26,24 @@ This project builds a trajectory from a set of `.cif` protein structures, comput
 - numpy
 - matplotlib
 
-Install dependencies with:
+Next, install dependencies with:
 
 ``` bash
-pip install -r requirements.txt
+pip install -r scripts/requirements.txt
 ```
 
 ## Usage
 
-Once your `.cif` files are ready, run the pipeline with:
+If you'd like to verify your setup using the provided test sequences, run:
+
+```bash
+python scripts/run_analysis.py --cif_dir test_data/
+```
+
+Confirm that `test_data/` contains `.cif` files as expected. This will generate all output files in the `output/` directory.
+
+
+Once your own `.cif` files are ready, run the pipeline with:
 
 ```bash
 python scripts/run_analysis.py --cif_dir path/to/cifs
@@ -54,13 +72,3 @@ Customize the analysis with these flags:
 --scale               Scale for PCA projection (default: 30.0)
 --components          Number of PCA components to use (default: [0])
 ```
-
-## Test
-
-To verify setup, run:
-
-```bash
-python scripts/run_analysis.py --cif_dir test_data/
-```
-
-Make sure `test_data/` contains a few valid `.cif` files. This will generate all output files in the `output/` directory.

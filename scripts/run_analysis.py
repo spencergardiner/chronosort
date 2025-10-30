@@ -2,8 +2,8 @@
 import argparse
 import os
 import warnings
-from source.trajectory import make_traj
-from source.pca_analysis import pca_projection
+from trajectory import make_traj
+from pca_analysis import pca_projection
 
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -23,6 +23,16 @@ def main():
     parser.add_argument("--components", nargs="+", type=int, default=[0], help="PCA components to use")
 
     args = parser.parse_args()
+
+    import os
+
+    # Convert cif_dir to an absolute path relative to the script's location if it's relative
+    SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+    args.cif_dir = (
+        args.cif_dir
+        if os.path.isabs(args.cif_dir)
+        else os.path.join(SCRIPT_DIR, args.cif_dir)
+    )
 
     # make sure output directories exist (minimal defensive change)
     _ensure_parent_dir(args.trajectory_file)

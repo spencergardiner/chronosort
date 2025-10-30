@@ -18,7 +18,7 @@ git clone https://github.com/dellacortelab/chronosort.git
 cd chronosort
 ```
 
-## Requirements
+## Dependencies
 
 - Python 3.8+
 - [MDAnalysis](https://www.mdanalysis.org/)
@@ -32,16 +32,41 @@ Next, install dependencies with:
 pip install -r scripts/requirements.txt
 ```
 
+## Input File Requirements
+
+### Input Overview
+The program expects a minimum of 100 CIF files (.cif) as input. This ensemble of models enables the analysis to capture predictional variability and assess the robustness of structural or dynamic features across independent AlphaFold3 predictions.
+
+### CIF File Format
+The .cif (Crystallographic Information File) format is the native structural output format of the AlphaFold3 server. Each file encodes the atomic coordinates, residue identifiers, chain information, and associated metadata for a single protein structure prediction.
+
+Generated CIF files should be placed in the directory specified by the --cif_dir argument. The directory should therefore contain a collection of files, for example:
+
+```
+test_data/
+├── model_seed_001.cif
+├── model_seed_002.cif
+├── model_seed_003.cif
+...
+├── model_seed_100.cif
+```
+
+### Input Guidelines
+* CIF files must be derived from the same sequence input but generated using different random seeds to ensure diverse structural sampling.8
+
+* The minimum recommended number of models is 100, although higher counts improve statistical reliability in ensemble analyses.
+
+* The program automatically reads all .cif files in the provided directory; no manual file list is required.
+
 ## Usage
 
-If you'd like to verify your setup using the provided test sequences, run:
+If you'd like to first verify your setup using the provided test sequences, run:
 
 ```bash
 python scripts/run_analysis.py --cif_dir test_data/
 ```
 
 Confirm that `test_data/` contains `.cif` files as expected. This will generate all output files in the `output/` directory.
-
 
 Once your own `.cif` files are ready, run the pipeline with:
 

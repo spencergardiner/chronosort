@@ -99,7 +99,7 @@ def make_traj(cif_dir, output_file="ordered.pdb"):
             # Save as multi-model PDB by modifying original files' coordinates
             with open(output_file, 'w') as out:
                 for k, idx in enumerate(best_path):
-                    filepath = os.path.join(cif_dir, files[idx]) 
+                    filepath = os.path.join(cif_dir, files[idx])
                     with open(filepath, 'r') as f:
                         lines = f.readlines()
                     out.write(f"MODEL      {k+1}\n")

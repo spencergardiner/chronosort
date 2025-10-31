@@ -15,24 +15,27 @@ def _ensure_parent_dir(path):
 
 def main():
     parser = argparse.ArgumentParser(description="Protein PCA Analysis")
-    parser.add_argument("--cif_dir", required=True, help="Directory with .cif files")
+    parser.add_argument("--cif_dir", required=True, help="Directory containing .cif files")
     parser.add_argument("--trajectory_file", default="output/trajectory.pdb", help="Output trajectory file")
     parser.add_argument("--vecs_file", default="output/vecs.txt", help="Output eigenvectors file")
     parser.add_argument("--projection_file", default="output/projection.pdb", help="Output PCA projection file")
     parser.add_argument("--scale", type=float, default=30.0, help="Scale for PCA projection")
-    parser.add_argument("--components", nargs="+", type=int, default=[0], help="PCA components to use")
+    parser.add_argument(
+        "--components",
+        nargs="+",
+        type=int,
+        default=[0],
+        help="One or more 0-based PCA component indices to include in the projection",
+    )
 
     args = parser.parse_args()
 
     import os
 
-    # Convert cif_dir to an absolute path relative to the script's location if it's relative
-    SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-    args.cif_dir = (
-        args.cif_dir
-        if os.path.isabs(args.cif_dir)
-        else os.path.join(SCRIPT_DIR, args.cif_dir)
-    )
+
+    # Convert cif_dir to an absolute path so downstream modules see the same location
+    if not os.path.isabs(args.cif_dir):
+        args.cif_dir = os.path.abspath(args.cif_dir)
 
     # make sure output directories exist (minimal defensive change)
     _ensure_parent_dir(args.trajectory_file)
@@ -43,7 +46,7 @@ def main():
     make_traj(args.cif_dir, args.trajectory_file)
 
     # ---- IMPORTANT: call pca_projection with arguments in the order your module expects ----
-    # pca_projection(path_to_pdbs, trajectory_file, vecs_file, projection_file, sel_str=..., components=..., projection=..., scale=...)
+    # components selects which PCA axes (0-based indices) are combined when generating the projection trajectory
     pca_projection(
         args.cif_dir,
         args.trajectory_file,

@@ -30,8 +30,6 @@ def main():
 
     args = parser.parse_args()
 
-
-
     # Convert cif_dir to an absolute path so downstream modules see the same location
     if not os.path.isabs(args.cif_dir):
         args.cif_dir = os.path.abspath(os.getcwd(), args.cif_dir)

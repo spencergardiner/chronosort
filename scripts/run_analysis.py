@@ -30,12 +30,11 @@ def main():
 
     args = parser.parse_args()
 
-    import os
 
 
     # Convert cif_dir to an absolute path so downstream modules see the same location
     if not os.path.isabs(args.cif_dir):
-        args.cif_dir = os.path.abspath(args.cif_dir)
+        args.cif_dir = os.path.abspath(os.getcwd(), args.cif_dir)
 
     # make sure output directories exist (minimal defensive change)
     _ensure_parent_dir(args.trajectory_file)

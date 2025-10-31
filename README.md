@@ -15,7 +15,7 @@ ChronoSort is a computational framework designed to extract dynamic conformation
 
 ## Getting Started
 
-ChronoSort ships with both command-line utilities and a Google Colab notebook. Example datasets and outputs are provided to help you validate your setup.
+ChronoSort ships with both command-line utilities and a Google Colab notebook. Example datasets are provided in `/data`.
 
 ### Installation
 
@@ -35,7 +35,7 @@ pip install -r requirements.txt
 
 ## Command-Line Usage
 
-Example CIF ensembles for quick validation live in `data/test_data`. To generate the example outputs:
+An example CIF ensemble is found in `data/test_data`. To generate the example outputs:
 
 ```bash
 python scripts/run_analysis.py --cif_dir data/test_data
@@ -59,7 +59,7 @@ data/test_data/
 ├── ...
 ```
 
-ChronoSort automatically reads every `.cif` file in the provided directory—no manual file list is required.
+ChronoSort automatically reads every `.cif` file in the provided directory.
 
 ### Custom Arguments
 
@@ -75,7 +75,7 @@ python scripts/run_analysis.py \
   --components 0 1 2
 ```
 
-`--components` accepts 0-based indices of the PCA modes you want to combine when generating the projected trajectory (e.g., `--components 0 1`).
+`--components` accepts 0-based indices of the PCA modes to combine when generating the projected trajectory (e.g., `--components 0 1`).
 
 ### What Happens Under the Hood
 
